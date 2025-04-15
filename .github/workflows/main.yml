@@ -34,4 +34,16 @@ jobs:
       run: |
         echo "Build completed successfully!"
         echo "Node version: $(node -v)"
-        echo "NPM version: $(npm -v)" 
+        echo "NPM version: $(npm -v)"
+
+    - name: Deploy to Azure VM
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.VM_HOST }}
+        username: ${{ secrets.VM_USERNAME }}
+        key: ${{ secrets.VM_SSH_KEY }}
+        script: |
+          cd /var/www/simple-login
+          git pull origin main
+          npm install
+          pm2 restart simple-login || pm2 start npm --name "simple-login" -- start 
