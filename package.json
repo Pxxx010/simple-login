@@ -1,0 +1,16 @@
+{
+  "name": "simple-login",
+  "version": "1.0.0",
+  "description": "Este é um projeto simples de uma plataforma de login desenvolvida em HTML, CSS e JavaScript.",
+  "main": "script.js",
+  "scripts": {
+    "start": "live-server --port=3000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
