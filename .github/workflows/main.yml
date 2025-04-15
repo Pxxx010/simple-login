@@ -45,7 +45,6 @@ jobs:
           source: "."
           target: "/var/www/simple-login-temp"
           strip_components: 0
-          tar_exec: "tar --exclude='.git'"
           overwrite: true
           rm: true
 
