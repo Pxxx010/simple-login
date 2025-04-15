@@ -4,7 +4,7 @@
   "description": "Este é um projeto simples de uma plataforma de login desenvolvida em HTML, CSS e JavaScript.",
   "main": "script.js",
   "scripts": {
-    "start": "live-server --port=3000",
+    "start": "live-server --port=3000 --host=0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
