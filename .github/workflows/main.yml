@@ -57,7 +57,7 @@ jobs:
           target: "/var/www/simple-login-temp"
           strip_components: 0
           overwrite: true
-          rm: true
+          rm: false
 
       - name: Replace old project and restart app
         uses: appleboy/ssh-action@master
