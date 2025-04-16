@@ -36,6 +36,17 @@ jobs:
           echo "Node version: $(node -v)"
           echo "NPM version: $(npm -v)"
 
+      - name: Prepare deploy folder
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USERNAME }}
+          password: ${{ secrets.VM_PASSWORD }}
+          script: |
+            sudo rm -rf /var/www/simple-login-temp
+            sudo mkdir -p /var/www/simple-login-temp
+            sudo chown -R $USER:$USER /var/www/simple-login-temp
+
       - name: Deploy to Azure VM
         uses: appleboy/scp-action@master
         with:
@@ -56,8 +67,3 @@ jobs:
           password: ${{ secrets.VM_PASSWORD }}
           script: |
             sudo rm -rf /var/www/simple-login
-            sudo mv /var/www/simple-login-temp /var/www/simple-login
-            sudo chown -R $USER:$USER /var/www/simple-login
-            cd /var/www/simple-login
-            npm install
-            pm2 restart simple-login || pm2 start npm --name "simple-login" -- start
