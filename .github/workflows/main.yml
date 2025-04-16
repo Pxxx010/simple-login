@@ -67,3 +67,10 @@ jobs:
           password: ${{ secrets.VM_PASSWORD }}
           script: |
             sudo rm -rf /var/www/simple-login
+            sudo mv /var/www/simple-login-temp /var/www/simple-login
+            sudo chown -R $USER:$USER /var/www/simple-login
+            cd /var/www/simple-login
+            npm install
+            pm2 delete simple-login || true
+            pm2 start npm --name "simple-login" -- start
+
